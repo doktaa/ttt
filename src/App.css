@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.grid-table {
+}
+
+.grid-col {
+  width: 25vmin;
+  height: 25vmin;
+}
+
+.xoimg {
+  object-fit: contain;
+  width: 25vmin;
+  height: 25vmin
+}
