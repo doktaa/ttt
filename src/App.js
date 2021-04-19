@@ -25,7 +25,8 @@ function App() {
   function tileClick(num) {
     // alert(num);
 
-    if (turn === 'X' || turn === 'O') {
+    if ((turn === 'X' || turn === 'O') && tileArray[num] === null) {
+
       tileArray[num] = turn;      
       document.getElementById(num).innerHTML = '<img class="xoimg object-contain" src="' + (turn === 'X' ? ximg : oimg) + '"/>'
 
