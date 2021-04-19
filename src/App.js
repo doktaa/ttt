@@ -27,14 +27,23 @@ function App() {
 
     if (turn === 'X' || turn === 'O') {
       tileArray[num] = turn;      
-      document.getElementById(num).innerHTML = '<img class="xoimg" src="' + (turn === 'X' ? ximg : oimg) + '"/>'
+      document.getElementById(num).innerHTML = '<img class="xoimg object-contain" src="' + (turn === 'X' ? ximg : oimg) + '"/>'
 
       console.log(tileArray);
       let winner = checkMatch()
       console.log('winner', tileArray, winner);
 
-      if(winner === null) {        
-        setTurn(turn === 'X' ? 'O' : 'X');
+      if(winner === null) {
+        if (!tileArray.includes(null)) {
+          setTurn(null);
+          document.getElementById("game-msg").innerHTML = "No winner :O start again"
+          tileArray.forEach((i, index) => {
+            document.getElementById(index).innerHTML = "";
+          })
+
+        }else {
+          setTurn(turn === 'X' ? 'O' : 'X');
+        }
       } else {
         setTurn(null);
         document.getElementById("game-msg").innerHTML = `Player ${winner} Wins`;
@@ -43,6 +52,10 @@ function App() {
   }
 
   function startGame() {
+    setTileArray([null, null, null, null, null, null, null, null, null])
+    tileArray.forEach((i, index) => {
+      document.getElementById(index).innerHTML = "";
+    })
     setTurn((Math.random * 100) > 50 ? 'X' : 'O');
   }
 
@@ -72,9 +85,9 @@ function App() {
 
 
   return (
-    <div className="App">
-      <p id="game-msg">Please start new game</p>
-      <table className="grid-table">
+    <div className="App text-white">
+      <p id="game-msg" className="container mx-auto my-5 rounded-md border-red-500 border-4 text-6xl w-9/12 py-8">Start new game???</p>
+      {/* <table className="grid-table">
         <tr className="grid-row">
           <td className="grid-col"><Tile num="0" click={tileClick}/></td>
           <td className="grid-col"><Tile num="1" click={tileClick}/></td>
@@ -90,9 +103,20 @@ function App() {
           <td className="grid-col"><Tile num="7" click={tileClick}/></td>
           <td className="grid-col"><Tile num="8" click={tileClick}/></td>
         </tr>
-      </table>
-      <button onClick={startGame}>Start</button>
-    </div>
+      </table> */}
+      <div className="grid grid-cols-3 grid-rows-3 grid-table mx-auto">
+          <div className="grid-col bg-gray-800 m-2 shadow-xl"><Tile num="0" click={tileClick} turn={turn}/></div>
+          <div className="grid-col bg-gray-800 m-2 shadow-xl"><Tile num="1" click={tileClick} turn={turn}/></div>
+          <div className="grid-col bg-gray-800 m-2 shadow-xl"><Tile num="2" click={tileClick} turn={turn}/></div>
+          <div className="grid-col bg-gray-800 m-2 shadow-xl"><Tile num="3" click={tileClick} turn={turn}/></div>
+          <div className="grid-col bg-gray-800 m-2 shadow-xl"><Tile num="4" click={tileClick} turn={turn}/></div>
+          <div className="grid-col bg-gray-800 m-2 shadow-xl"><Tile num="5" click={tileClick} turn={turn}/></div>
+          <div className="grid-col bg-gray-800 m-2 shadow-xl"><Tile num="6" click={tileClick} turn={turn}/></div>
+          <div className="grid-col bg-gray-800 m-2 shadow-xl"><Tile num="7" click={tileClick} turn={turn}/></div>
+          <div className="grid-col bg-gray-800 m-2 shadow-xl"><Tile num="8" click={tileClick} turn={turn}/></div>
+      </div>      
+      <button className="mt-5 text-3xl" onClick={startGame}>Start</button>
+    </div> 
   );
 }
 

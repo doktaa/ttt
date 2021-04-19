@@ -1,3 +1,8 @@
+body {
+  font-family: 'Poppins';
+  background-color: black;
+}
+
 .App {
   text-align: center;
 }
@@ -38,15 +43,16 @@
 }
 
 .grid-table {
+  width: 75vmin;
+  height: 75vmin;
 }
 
-.grid-col {
+/* .grid-col {
   width: 25vmin;
   height: 25vmin;
-}
+} */
 
-.xoimg {
-  object-fit: contain;
-  width: 25vmin;
-  height: 25vmin
+.tile {
+  width: 100%;
+  height: 100%;
 }
